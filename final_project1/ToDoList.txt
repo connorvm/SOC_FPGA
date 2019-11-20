@@ -1,0 +1,15 @@
+Alex
+Opcodes 100-111
+100 - Decrement B
+101 - R = A
+110 - Swap A & B
+111 - A AND B = R C reg will be a invert flag
+alu
+
+Connor
+Opcodes 000-011
+000 - Nop
+001 - A ADD B = R
+010 - A SUB B = R
+011 - A MUL B = R
+status_reg
