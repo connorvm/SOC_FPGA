@@ -14,11 +14,6 @@ Opcodes 000-011
 011 - A MUL B = R
 status_reg
 
- 
-
-
-
-
-
- Hello will this break
+What do we want to start with? 
+1) Set up the shell? ie. registers, overall flow? If I remeber right, that's what you meant by doing the ALU.
  
