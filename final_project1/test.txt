@@ -1,2 +1,4 @@
 Hello did this work?
 I am using a Git GUI, is it working?
+
+I also installed Visual Studio. That way I can more easily edit code.
