@@ -16,8 +16,7 @@ entity status_reg is
     port(
         clk            : in  std_logic;                         -- system clock
         reset          : in  std_logic;                         -- system reset
-        LED            : out std_logic_vector(7 downto 0);       -- LEDs on the DE10-Nano board **(Not needed I don't think)
-        result         : in std_logic_vector(7 downto 0)
+        result         : in std_logic_vector(7 downto 0)        -- result of the operation
     );
 end entity status_reg;
 
@@ -39,7 +38,7 @@ architecture status_arch of status_reg is
      end if;
 
      -- n_flag will be set if the result of an operation is NEGATIVE --
-     if result(7 downto 6) = '1' then
+     if result(7 downto 6) = '1' then   --If the first bit of the result is a '1', then it is negative
          n_flag <= '1';
      end if;
 
