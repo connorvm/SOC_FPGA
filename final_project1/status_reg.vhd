@@ -16,7 +16,7 @@ entity status_reg is
     port(
         clk            : in  std_logic;                         -- system clock
         reset          : in  std_logic;                         -- system reset
-        result         : in std_logic_vector(7 downto 0)        -- result of the operation
+        result         : in std_logic_vector(31 downto 0)        -- result of the operation
     );
 end entity status_reg;
 
@@ -34,12 +34,12 @@ architecture status_arch of status_reg is
 	 process(result)
 		begin
 		-- z_flag will be set if the result of an operation is ZERO --   
-		if result = "00000000" then
+		if result = "0x00000000" then
 			z_flag <= '1';
 		end if;
 
      -- n_flag will be set if the result of an operation is NEGATIVE --
-		if result(7) = '1' then   --If the first bit of the result is a '1', then it is negative
+		if result(31) = '1' then   --If the first bit of the result is a '1', then it is negative
 			n_flag <= '1';
 		end if;
 

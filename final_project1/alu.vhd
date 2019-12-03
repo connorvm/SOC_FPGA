@@ -33,5 +33,5 @@ architecture alu_arch of alu is
     begin
 
 
-    end architecture alu_arch;
+end architecture alu_arch;
     
