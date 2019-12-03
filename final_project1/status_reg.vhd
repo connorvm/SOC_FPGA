@@ -14,10 +14,11 @@ USE altera.altera_primitives_components.all;
 
 entity status_reg is
     port(
-        clk            	: in  std_logic;                          -- system clock
-        reset          	: in  std_logic;                          -- system reset
- 		result_h	    : in std_logic_vector(31 downto 0); 	  -- result in high register
-		result_l		: in std_logic_vector(31 downto 0) 	      -- result in low register
+			clk          : in  std_logic;                       -- system clock
+			reset        : in  std_logic;                       -- system reset
+			result_h	    : in  std_logic_vector(31 downto 0); 	 -- result in high register
+			result_l		 : in  std_logic_vector(31 downto 0); 	 -- result in low register
+			status		 : out std_logic_vector(2 downto 0)
     );
 end entity status_reg;
 
@@ -63,7 +64,8 @@ architecture status_arch of status_reg is
         else
             f_flag <= '1';      --If the high register has something in it, then the flag is set
         end if; 
-        
+			
+			status <= z_flag & n_flag & f_flag;
 	  
 	  end process;
 
