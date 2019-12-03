@@ -32,21 +32,23 @@ architecture status_arch of status_reg is
 
 
     begin
-
+	 
+	 
+	process(result)
+	begin
      -- z_flag will be set if the result of an operation is ZERO --   
      if result = "00000000" then
         z_flag <= '1';
      end if;
 
      -- n_flag will be set if the result of an operation is NEGATIVE --
-     if result(7 downto 6) = '1' then
+     if result(7) = '1' then
          n_flag <= '1';
      end if;
 
      -- f_flag will be set if the result uses both registers --
-
-
-
+	  
+	  end process;
 
 
 end architecture status_arch;

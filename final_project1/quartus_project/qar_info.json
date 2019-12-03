@@ -1,0 +1,7 @@
+{
+	"common_dir" : "/home/alex/Documents/soc_fpga1/lab06/",
+	"acds_version" : "Version 18.0.0",
+	"platform" : "linux",
+	"os" : "KDE neon",
+	"qpf" : "AudioMini_Passthrough/DE10Nano_System.qpf"
+}
