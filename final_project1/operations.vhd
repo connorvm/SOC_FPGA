@@ -139,21 +139,28 @@ begin
 	process(clk)
 	begin
 		if rising_edge(clk) then
-			-- dec\
+			-- dec
+			result_dec <= std_logic_vector(signed(b) - 1); 
 		end if;
 	end process;	
 	
 	process(clk)
 	begin
 		if rising_edge(clk) then
-			-- pass
+			-- passthrough
+			result_pas <= x"00000000" & a;
 		end if;
 	end process;
 
 	process(clk)
 	begin
 		if rising_edge(clk) then
-			-- AND
+			-- and 
+			if c(0) = '1' then
+				result_and <= not (a AND b);
+			else
+				result_and <= a AND b;
+			end if;
 		end if;
 	end process;	
 	
