@@ -1,7 +1,6 @@
 --This file will be handling the status register logic--
 
--- Author: Connor Van Meter
--- Lab Partner: Alex Salois
+-- Authors: Connor Van Meter, Alex Salois
 
 
 library IEEE;
