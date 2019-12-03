@@ -30,20 +30,16 @@ end entity operations;
     
 architecture operations_arch of operations is
 	 
-	-- Quartus Prime VHDL Template
--- Four-State Mealy State Machine
-
--- A Mealy machine has outputs that depend on both the state and
--- the inputs.	When the inputs change, the outputs are updated
--- immediately, without waiting for a clock edge.  The outputs
--- can be written more than once per state or per clock cycle.
-
-
 	-- Build an enumerated type for the state machine
 	type state_type is (s0, s1);
 
 	-- Register to hold the current state
 	signal state : state_type;
+	
+	signal result : std_logic_vector(63 downto 0);
+	
+	
+	
 
 begin
 
@@ -87,18 +83,24 @@ begin
 						when "000" => 
 						
 						when "001" =>
+							result_l <= result(31 downto 0);
 						
 						when "010" => 
+							result_l <= result(31 downto 0);
 						
 						when "011" =>
+							result_l <= result(31 downto 0);
+							result_h <= result(63 downto 32);
 						
-						when "100" => 
+						when "100" =>
 						
 						when "101" =>
+							result_l <= result(31 downto 0);
 						
 						when "110" => 
 						
 						when "111" =>
+							result_l <= result(31 downto 0);
 						
 					end case;
 			end case;
