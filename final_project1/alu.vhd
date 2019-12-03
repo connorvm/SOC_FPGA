@@ -22,7 +22,8 @@ entity alu is
 			a					: in  std_logic_vector(31 downto 0); 	  -- input regs
 			b					: in  std_logic_vector(31 downto 0); 	  -- 
 			c					: in  std_logic_vector(31 downto 0); 	  -- 
-			opcode			: in  std_logic_vector(2 downto 0) 	  	  -- opcode
+			opcode			: in  std_logic_vector(2 downto 0); 	  -- opcode
+			op_change		: out std_logic
 		
     );
 end entity alu;
@@ -34,7 +35,7 @@ architecture alu_arch of alu is
     begin
 		process(opcode)
 			begin
-	 
+			op_change <= '1';
 		end process;
 
 
