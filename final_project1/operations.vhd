@@ -36,7 +36,12 @@ architecture operations_arch of operations is
 	-- Register to hold the current state
 	signal state : state_type;
 	
-	signal result : std_logic_vector(63 downto 0);
+	signal result_add : std_logic_vector(63 downto 0);
+	signal result_sub : std_logic_vector(63 downto 0);
+	signal result_mul : std_logic_vector(63 downto 0);
+	signal result_dec : std_logic_vector(63 downto 0);
+	signal result_pas : std_logic_vector(63 downto 0);
+	signal result_and : std_logic_vector(63 downto 0);
 	
 	
 	
@@ -83,28 +88,77 @@ begin
 						when "000" => 
 						
 						when "001" =>
-							result_l <= result(31 downto 0);
+							result_l <= result_add(31 downto 0);
+							result_h <= result_add(63 downto 32);
 						
 						when "010" => 
-							result_l <= result(31 downto 0);
+							result_l <= result_sub(31 downto 0);
+							result_h <= result_sub(63 downto 32);
 						
 						when "011" =>
-							result_l <= result(31 downto 0);
-							result_h <= result(63 downto 32);
+							result_l <= result_mul(31 downto 0);
+							result_h <= result_mul(63 downto 32);
 						
 						when "100" =>
+
 						
 						when "101" =>
-							result_l <= result(31 downto 0);
-						
+							result_l <= result_pas(31 downto 0);
+							
 						when "110" => 
 						
 						when "111" =>
-							result_l <= result(31 downto 0);
+							result_l <= result_and(31 downto 0);
+							result_h <= result_and(63 downto 32);
 						
 					end case;
 			end case;
 	end process;
+	
+	process(clk)
+	begin
+		if rising_edge(clk) then
+			-- add
+		end if;
+	end process;
+
+		process(clk)
+	begin
+		if rising_edge(clk) then
+			-- sub
+		end if;
+	end process;	
+	
+	process(clk)
+	begin
+		if rising_edge(clk) then
+			-- mul
+		end if;	
+	end process;
+
+	process(clk)
+	begin
+		if rising_edge(clk) then
+			-- dec\
+		end if;
+	end process;	
+	
+	process(clk)
+	begin
+		if rising_edge(clk) then
+			-- pass
+		end if;
+	end process;
+
+	process(clk)
+	begin
+		if rising_edge(clk) then
+			-- AND
+		end if;
+	end process;	
+	
+
+
 
 
 
