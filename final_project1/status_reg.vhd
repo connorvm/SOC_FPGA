@@ -17,13 +17,8 @@ entity status_reg is
     port(
         clk            : in  std_logic;                         -- system clock
         reset          : in  std_logic;                         -- system reset
-        PB             : in  std_logic;                         -- Pushbutton to change state  
-        SW             : in  std_logic_vector(3 downto 0);      -- Switches that determine next state
-        HS_LED_control : in  std_logic;                         -- Software is in control when asserted (=1)
-        SYS_CLKs_sec   : in  std_logic_vector(31 downto 0);     -- Number of system clock cycles in one second
-        Base_rate      : in  std_logic_vector(7 downto 0);      -- base transition time in seconds, fixed-point data type
-        LED_reg        : in  std_logic_vector(7 downto 0);      -- LED register
-        LED            : out std_logic_vector(7 downto 0)       -- LEDs on the DE10-Nano board
+        LED            : out std_logic_vector(7 downto 0);       -- LEDs on the DE10-Nano board **(Not needed I don't think)
+        result         : in std_logic_vector(7 downto 0)
     );
 end entity status_reg;
 
@@ -31,7 +26,27 @@ end entity status_reg;
 architecture status_arch of status_reg is 
 
 
+ signal result : std_logic_vector(7 downto 0);
+ signal z_flag : std_logic;      --signal for the Zero Flag, indicates if result is zero
+ signal n_flag : std_logic;      --signal for the Negative Flag, indicates if result is negative
+ signal f_flag : std_logic;      --signal for the F flag, indicates if both Registers 3 and 4 are used
+
+
     begin
+     -- z_flag will be set if the result of an operation is ZERO --   
+     if result = "00000000" then
+        z_flag <= '1';
+     end if;
+
+     -- n_flag will be set if the result of an operation is NEGATIVE --
+     if result(7 downto 6) = '1' then
+         n_flag <= '1';
+     end if;
+
+     -- f_flag will be set if the result uses both registers --
 
 
-end architecture;
+
+
+
+end architecture status_arch;
