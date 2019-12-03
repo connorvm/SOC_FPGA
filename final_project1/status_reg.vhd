@@ -1,4 +1,4 @@
-This file will be handling the status resgiter logic
+--This file will be handling the status register logic--
 
 -- Author: Connor Van Meter
 -- Lab Partner: Alex Salois
@@ -26,13 +26,14 @@ end entity status_reg;
 architecture status_arch of status_reg is 
 
 
- signal result : std_logic_vector(7 downto 0);
+ --signal result : std_logic_vector(7 downto 0);
  signal z_flag : std_logic;      --signal for the Zero Flag, indicates if result is zero
  signal n_flag : std_logic;      --signal for the Negative Flag, indicates if result is negative
  signal f_flag : std_logic;      --signal for the F flag, indicates if both Registers 3 and 4 are used
 
 
     begin
+
      -- z_flag will be set if the result of an operation is ZERO --   
      if result = "00000000" then
         z_flag <= '1';
