@@ -118,14 +118,16 @@ begin
 	process(clk)
 	begin
 		if rising_edge(clk) then
-			-- add
+            -- add
+            result_add <= x"0000000" & "000" & (a + b);
 		end if;
 	end process;
 
 		process(clk)
 	begin
 		if rising_edge(clk) then
-			-- sub
+            -- sub
+            result_sub <= std_logic_vector(signed(a) - signed(b));
 		end if;
 	end process;	
 	
