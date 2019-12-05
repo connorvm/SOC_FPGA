@@ -21,9 +21,9 @@ entity qsys_alu is
 			result_h			: in std_logic_vector(31 downto 0); 	  -- results
 			result_l			: in std_logic_vector(31 downto 0); 	  -- results
 			a					: in  std_logic_vector(31 downto 0); 	  -- input regs
-            b					: in  std_logic_vector(31 downto 0); 	  -- 
-            SW              : in std_logic_vector(3 downto 0);           -- Switches
-            LED             : out std_logic_vector(7 downto 0)          --LEDs
+         b					: in  std_logic_vector(31 downto 0); 	  -- 
+         SW             : in std_logic_vector(3 downto 0);           -- Switches
+         LED            : out std_logic_vector(7 downto 0)          --LEDs
     );
 end entity qsys_alu;
 
@@ -59,10 +59,10 @@ architecture qsys_alu_arch of qsys_alu is
             end case;
 
             case SW(1 downto 0) is
-                when "00" => show_byte <= l_byte  --show low byte (7 downto 0)
-                when "01" => show_byte <= ml_byte --show mid-low byte (15 downto 8)
-                when "10" => show_byte <= mh_byte --show mid-high byte (23 downto 16)
-                when "11" => show_byte <= h_byte  --show high byte (31 downto 24)
+                when "00" => show_byte <= l_byte;  --show low byte (7 downto 0)
+                when "01" => show_byte <= ml_byte; --show mid-low byte (15 downto 8)
+                when "10" => show_byte <= mh_byte; --show mid-high byte (23 downto 16)
+                when "11" => show_byte <= h_byte;  --show high byte (31 downto 24)
                 when others => show_byte <= x"00";
             end case ;
 
