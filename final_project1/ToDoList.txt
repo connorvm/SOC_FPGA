@@ -4,7 +4,6 @@ Opcodes 100-111
 101 - R = A
 110 - Swap A & B
 111 - A AND B = R C reg will be a invert flag
-alu
 
 Connor
 Opcodes 000-011
@@ -12,15 +11,13 @@ Opcodes 000-011
 001 - A ADD B = R
 010 - A SUB B = R
 011 - A MUL B = R
-status_reg
-
 
 
 JUST A FEW THINGS WE to do next 
 
 We need to make a qsys_alu
 	in this we need to
-	1 hook up the LEDs to the ALU through the SW
+	1 hook up the LEDs to the ALU through the SW  **I think is done**
 	2 set up component in Platform Desiger
 
 We need to adjust the LED_control to either run the way we want or through it out
