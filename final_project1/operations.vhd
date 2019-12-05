@@ -55,14 +55,14 @@ begin
 			-- Determine the next state synchronously, based on
 			-- the current state and the input
 			case opcode is
-				when "000" =>  state <= s0;	
-				when "001" =>  state <= s1;
-				when "010" =>  state <= s2;	
-				when "011" =>  state <= s3;
-				when "100" =>  state <= s4;
-				when "101" =>  state <= s5;
-				when "110" =>  state <= s6;
-				when "111" =>  state <= s7;
+				when "000" =>  state <= s0;	--NOP
+				when "001" =>  state <= s1;	--add
+				when "010" =>  state <= s2;	--sub
+				when "011" =>  state <= s3;	--mul
+				when "100" =>  state <= s4;	--dec
+				when "101" =>  state <= s5;	--pass
+				when "110" =>  state <= s6;	--swap
+				when "111" =>  state <= s7;	--AND
 				when others => state <= s0;
 			end case;
 		end if;
@@ -74,27 +74,27 @@ begin
 			case state is
 				when s0=>
 
-				when s1=>
+				when s1=>	--add
 					result_l <= result_add(31 downto 0);
 					result_h <= result_add(63 downto 32);
 						
-				when s2=>
+				when s2=>	--subtract
 					result_l <= result_sub(31 downto 0);
 					result_h <= result_sub(63 downto 32);
 						
-				when s3 =>
+				when s3 =>	--multiply
 					result_l <= result_mul(31 downto 0);
 					result_h <= result_mul(63 downto 32);
 						
-				when s4 =>
+				when s4 =>	--decrement
 					result_l <= result_dec(31 downto 0);
 					
-				when s5 =>
+				when s5 =>	--passthrough
 					result_l <= result_pas(31 downto 0);
 							
 				when s6 => -- swap done in alu file
 						
-				when s7 =>
+				when s7 =>	--AND
 					result_l <= result_and(31 downto 0);
 					result_h <= result_and(63 downto 32);
 					
@@ -137,7 +137,7 @@ begin
 	process(clk) -- passthrough
 	begin
 		if rising_edge(clk) then
-			result_pas <= x"00000000" & a;
+			result_pas <= x"00000000" & a;	--Does this need to be signed() as well??
 		end if;
 	end process;
 
