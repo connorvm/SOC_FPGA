@@ -22,22 +22,6 @@
          type = "boolean";
       }
    }
-   element Qsys_LED_control_0
-   {
-      datum _sortIndex
-      {
-         value = "8";
-         type = "int";
-      }
-   }
-   element Qsys_LED_control_0.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "String";
-      }
-   }
    element SystemID
    {
       datum _sortIndex
@@ -128,7 +112,7 @@
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "8";
          type = "int";
       }
    }
@@ -177,6 +161,14 @@
       {
          value = "0";
          type = "String";
+      }
+   }
+   element qsys_alu_0
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
       }
    }
    element soc_system
@@ -500,12 +492,8 @@
    internal="hps.spim0_sclk_out"
    type="clock"
    dir="start" />
- <interface
-   name="led_control"
-   internal="Qsys_LED_control_0.export"
-   type="conduit"
-   dir="end" />
  <interface name="memory" internal="hps.memory" type="conduit" dir="end" />
+ <interface name="qsys_alu_0_s1" internal="qsys_alu_0.s1" type="avalon" dir="end" />
  <interface name="reset" internal="clk_hps.clk_in_reset" type="reset" dir="end" />
  <module
    name="PLL_using_AD1939_MCLK"
@@ -714,11 +702,6 @@
   <parameter name="gui_switchover_mode">Automatic Switchover</parameter>
   <parameter name="gui_use_locked" value="false" />
  </module>
- <module
-   name="Qsys_LED_control_0"
-   kind="Qsys_LED_control"
-   version="1.0"
-   enabled="1" />
  <module
    name="SystemID"
    kind="altera_avalon_sysid_qsys"
@@ -1286,7 +1269,7 @@
    name="jtag_mm1"
    kind="altera_jtag_avalon_master"
    version="18.0"
-   enabled="1">
+   enabled="0">
   <parameter name="AUTO_DEVICE" value="5CSEBA6U23I7" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
@@ -1347,6 +1330,7 @@
   <parameter name="useShallowMemBlocks" value="false" />
   <parameter name="writable" value="true" />
  </module>
+ <module name="qsys_alu_0" kind="qsys_alu" version="1.0" enabled="1" />
  <connection
    kind="avalon"
    version="18.0"
@@ -1374,24 +1358,6 @@
   <parameter name="baseAddress" value="0x0010" />
   <parameter name="defaultConnection" value="false" />
  </connection>
- <connection
-   kind="avalon"
-   version="18.0"
-   start="hps.h2f_lw_axi_master"
-   end="Qsys_LED_control_0.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="18.0"
-   start="jtag_mm1.master"
-   end="Qsys_LED_control_0.s1">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0000" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
  <connection kind="clock" version="18.0" start="clk_hps.clk" end="SystemID.clk" />
  <connection kind="clock" version="18.0" start="clk_hps.clk" end="jtag_uart.clk" />
  <connection kind="clock" version="18.0" start="clk_hps.clk" end="jtag_mm1.clk" />
@@ -1404,7 +1370,7 @@
    kind="clock"
    version="18.0"
    start="clk_hps.clk"
-   end="Qsys_LED_control_0.clock" />
+   end="qsys_alu_0.clock" />
  <connection
    kind="clock"
    version="18.0"
@@ -1461,7 +1427,7 @@
    kind="reset"
    version="18.0"
    start="clk_hps.clk_reset"
-   end="Qsys_LED_control_0.reset" />
+   end="qsys_alu_0.reset" />
  <connection
    kind="reset"
    version="18.0"

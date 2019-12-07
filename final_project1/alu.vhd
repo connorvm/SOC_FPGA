@@ -51,19 +51,6 @@ architecture alu_arch of alu is
 			status		 : out std_logic_vector(2 downto 0)
     );
 	end component status_reg;
-
-	component qsys_alu is
-	port(
-			clk            : in  std_logic;                         -- system clock
-			reset          : in  std_logic;                         -- system reset
-			result_h			: in std_logic_vector(31 downto 0); 	  -- results
-			result_l			: in std_logic_vector(31 downto 0); 	  -- results
-			a					: in  std_logic_vector(31 downto 0); 	  -- input regs
-            b					: in  std_logic_vector(31 downto 0); 	  -- 
-            SW              : in std_logic_vector(3 downto 0);           -- Switches
-            LED             : out std_logic_vector(7 downto 0)          --LEDs
-	);
-	end component qsys_alu;
 	
 	-- intermediate signals
 	signal result_low  	:	std_logic_vector(31 downto 0);
