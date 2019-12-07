@@ -16,14 +16,16 @@ USE altera.altera_primitives_components.all;
 
 entity qsys_alu is
     port(
-			clk            : in  std_logic;                         -- system clock
-			reset          : in  std_logic;                         -- system reset
-			result_h			: in std_logic_vector(31 downto 0); 	  -- results
-			result_l			: in std_logic_vector(31 downto 0); 	  -- results
-			a					: in  std_logic_vector(31 downto 0); 	  -- input regs
-         b					: in  std_logic_vector(31 downto 0); 	  -- 
-         SW             : in std_logic_vector(3 downto 0);           -- Switches
-         LED            : out std_logic_vector(7 downto 0)          --LEDs
+			clk            	: in  std_logic;                       
+			reset_n        	: in  std_logic;                       
+			avs_s1_address		: in  std_logic_vector(1 downto 0);
+			avs_s1_write		: in  std_logic; 
+			avs_s1_writedata	: in  std_logic_vector(31 downto 0);
+			avs_s1_read			: in  std_logic;
+			avs_s1_readdata	: out std_logic_vector(31 downto 0);  		
+			switches         	: in  std_logic_vector(3 downto 0);
+			pushbutton			: in 	std_logic;
+			leds            	: out std_logic_vector(7 downto 0)       
     );
 end entity qsys_alu;
 
