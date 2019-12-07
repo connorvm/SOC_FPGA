@@ -1,4 +1,3 @@
--- This file will 
 
 -- Authors: Connor Van Meter, Alex Salois
 

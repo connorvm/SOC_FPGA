@@ -17,11 +17,17 @@ JUST A FEW THINGS WE to do next
 
 We need to make a qsys_alu
 	in this we need to
-	1 hook up the LEDs to the ALU through the SW  **I think is done**
-	2 set up component in Platform Desiger
+--	1 hook up the LEDs to the ALU through the SW  **I think is done**
+-	2 set up component in Platform Desiger
 
-We need to adjust the LED_control to either run the way we want or through it out
+OTHERS:
+1)We need to write the c code
+	>Run program on bootup with systemd
+	>Output information with format
+2)Write report
+3)
 
-we need to alos write the c code 
+
+
 
 
