@@ -67,9 +67,6 @@ module soc_system (
 	hps_spim0_ss_2_n,
 	hps_spim0_ss_3_n,
 	hps_spim0_sclk_out_clk,
-	led_control_switches,
-	led_control_pushbutton,
-	led_control_leds,
 	memory_mem_a,
 	memory_mem_ba,
 	memory_mem_ck,
@@ -86,7 +83,10 @@ module soc_system (
 	memory_mem_odt,
 	memory_mem_dm,
 	memory_oct_rzqin,
-	reset_reset_n);	
+	reset_reset_n,
+	aliu_control_switches,
+	aliu_control_pushbutton,
+	aliu_control_leds);	
 
 	input		ad1939_abclk_clk;
 	input		ad1939_alrclk_clk;
@@ -155,9 +155,6 @@ module soc_system (
 	output		hps_spim0_ss_2_n;
 	output		hps_spim0_ss_3_n;
 	output		hps_spim0_sclk_out_clk;
-	input	[3:0]	led_control_switches;
-	input		led_control_pushbutton;
-	output	[7:0]	led_control_leds;
 	output	[14:0]	memory_mem_a;
 	output	[2:0]	memory_mem_ba;
 	output		memory_mem_ck;
@@ -175,4 +172,7 @@ module soc_system (
 	output	[3:0]	memory_mem_dm;
 	input		memory_oct_rzqin;
 	input		reset_reset_n;
+	input	[3:0]	aliu_control_switches;
+	input		aliu_control_pushbutton;
+	output	[7:0]	aliu_control_leds;
 endmodule

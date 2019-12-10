@@ -10,4 +10,5 @@
  <library expandedCategories="Library,Project" />
  <window width="3216" height="1764" x="-8" y="0" />
  <generation synthesis="VHDL" />
+ <hdlexample language="VHDL" />
 </preferences>

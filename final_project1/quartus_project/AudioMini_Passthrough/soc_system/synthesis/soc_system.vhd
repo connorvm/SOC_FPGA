@@ -11,6 +11,9 @@ entity soc_system is
 		ad1939_abclk_clk                    : in    std_logic                     := '0';             --            ad1939_abclk.clk
 		ad1939_alrclk_clk                   : in    std_logic                     := '0';             --           ad1939_alrclk.clk
 		ad1939_mclk_clk                     : in    std_logic                     := '0';             --             ad1939_mclk.clk
+		aliu_control_switches               : in    std_logic_vector(3 downto 0)  := (others => '0'); --            aliu_control.switches
+		aliu_control_pushbutton             : in    std_logic                     := '0';             --                        .pushbutton
+		aliu_control_leds                   : out   std_logic_vector(7 downto 0);                     --                        .leds
 		clk_clk                             : in    std_logic                     := '0';             --                     clk.clk
 		hps_f2h_cold_reset_req_reset_n      : in    std_logic                     := '0';             --  hps_f2h_cold_reset_req.reset_n
 		hps_f2h_debug_reset_req_reset_n     : in    std_logic                     := '0';             -- hps_f2h_debug_reset_req.reset_n
@@ -75,9 +78,6 @@ entity soc_system is
 		hps_spim0_ss_2_n                    : out   std_logic;                                        --                        .ss_2_n
 		hps_spim0_ss_3_n                    : out   std_logic;                                        --                        .ss_3_n
 		hps_spim0_sclk_out_clk              : out   std_logic;                                        --      hps_spim0_sclk_out.clk
-		led_control_switches                : in    std_logic_vector(3 downto 0)  := (others => '0'); --             led_control.switches
-		led_control_pushbutton              : in    std_logic                     := '0';             --                        .pushbutton
-		led_control_leds                    : out   std_logic_vector(7 downto 0);                     --                        .leds
 		memory_mem_a                        : out   std_logic_vector(14 downto 0);                    --                  memory.mem_a
 		memory_mem_ba                       : out   std_logic_vector(2 downto 0);                     --                        .mem_ba
 		memory_mem_ck                       : out   std_logic;                                        --                        .mem_ck
@@ -107,21 +107,6 @@ architecture rtl of soc_system is
 			locked   : out std_logic         -- export
 		);
 	end component soc_system_PLL_using_AD1939_MCLK;
-
-	component Qsys_LED_control is
-		port (
-			clk              : in  std_logic                     := 'X';             -- clk
-			reset_n          : in  std_logic                     := 'X';             -- reset_n
-			avs_s1_address   : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- address
-			avs_s1_write     : in  std_logic                     := 'X';             -- write
-			avs_s1_writedata : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
-			avs_s1_read      : in  std_logic                     := 'X';             -- read
-			avs_s1_readdata  : out std_logic_vector(31 downto 0);                    -- readdata
-			switches         : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- switches
-			pushbutton       : in  std_logic                     := 'X';             -- pushbutton
-			LEDs             : out std_logic_vector(7 downto 0)                      -- leds
-		);
-	end component Qsys_LED_control;
 
 	component soc_system_SystemID is
 		port (
@@ -388,6 +373,21 @@ architecture rtl of soc_system is
 		);
 	end component soc_system_onchip_memory;
 
+	component qsys_alu is
+		port (
+			clk              : in  std_logic                     := 'X';             -- clk
+			reset_n          : in  std_logic                     := 'X';             -- reset_n
+			avs_s1_address   : in  std_logic_vector(2 downto 0)  := (others => 'X'); -- address
+			avs_s1_write     : in  std_logic                     := 'X';             -- write
+			avs_s1_writedata : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
+			avs_s1_read      : in  std_logic                     := 'X';             -- read
+			avs_s1_readdata  : out std_logic_vector(31 downto 0);                    -- readdata
+			switches         : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- switches
+			pushbutton       : in  std_logic                     := 'X';             -- pushbutton
+			leds             : out std_logic_vector(7 downto 0)                      -- leds
+		);
+	end component qsys_alu;
+
 	component soc_system_mm_interconnect_0 is
 		port (
 			hps_h2f_axi_master_awid                                        : in  std_logic_vector(11 downto 0) := (others => 'X'); -- awid
@@ -496,11 +496,11 @@ architecture rtl of soc_system is
 			jtag_uart_avalon_jtag_slave_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
 			jtag_uart_avalon_jtag_slave_waitrequest                           : in  std_logic                     := 'X';             -- waitrequest
 			jtag_uart_avalon_jtag_slave_chipselect                            : out std_logic;                                        -- chipselect
-			Qsys_LED_control_0_s1_address                                     : out std_logic_vector(1 downto 0);                     -- address
-			Qsys_LED_control_0_s1_write                                       : out std_logic;                                        -- write
-			Qsys_LED_control_0_s1_read                                        : out std_logic;                                        -- read
-			Qsys_LED_control_0_s1_readdata                                    : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
-			Qsys_LED_control_0_s1_writedata                                   : out std_logic_vector(31 downto 0);                    -- writedata
+			qsys_alu_0_s1_address                                             : out std_logic_vector(2 downto 0);                     -- address
+			qsys_alu_0_s1_write                                               : out std_logic;                                        -- write
+			qsys_alu_0_s1_read                                                : out std_logic;                                        -- read
+			qsys_alu_0_s1_readdata                                            : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			qsys_alu_0_s1_writedata                                           : out std_logic_vector(31 downto 0);                    -- writedata
 			SystemID_control_slave_address                                    : out std_logic_vector(0 downto 0);                     -- address
 			SystemID_control_slave_readdata                                   : in  std_logic_vector(31 downto 0) := (others => 'X')  -- readdata
 		);
@@ -752,11 +752,11 @@ architecture rtl of soc_system is
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_writedata       : std_logic_vector(31 downto 0); -- mm_interconnect_1:jtag_uart_avalon_jtag_slave_writedata -> jtag_uart:av_writedata
 	signal mm_interconnect_1_systemid_control_slave_readdata             : std_logic_vector(31 downto 0); -- SystemID:readdata -> mm_interconnect_1:SystemID_control_slave_readdata
 	signal mm_interconnect_1_systemid_control_slave_address              : std_logic_vector(0 downto 0);  -- mm_interconnect_1:SystemID_control_slave_address -> SystemID:address
-	signal mm_interconnect_1_qsys_led_control_0_s1_readdata              : std_logic_vector(31 downto 0); -- Qsys_LED_control_0:avs_s1_readdata -> mm_interconnect_1:Qsys_LED_control_0_s1_readdata
-	signal mm_interconnect_1_qsys_led_control_0_s1_address               : std_logic_vector(1 downto 0);  -- mm_interconnect_1:Qsys_LED_control_0_s1_address -> Qsys_LED_control_0:avs_s1_address
-	signal mm_interconnect_1_qsys_led_control_0_s1_read                  : std_logic;                     -- mm_interconnect_1:Qsys_LED_control_0_s1_read -> Qsys_LED_control_0:avs_s1_read
-	signal mm_interconnect_1_qsys_led_control_0_s1_write                 : std_logic;                     -- mm_interconnect_1:Qsys_LED_control_0_s1_write -> Qsys_LED_control_0:avs_s1_write
-	signal mm_interconnect_1_qsys_led_control_0_s1_writedata             : std_logic_vector(31 downto 0); -- mm_interconnect_1:Qsys_LED_control_0_s1_writedata -> Qsys_LED_control_0:avs_s1_writedata
+	signal mm_interconnect_1_qsys_alu_0_s1_readdata                      : std_logic_vector(31 downto 0); -- qsys_alu_0:avs_s1_readdata -> mm_interconnect_1:qsys_alu_0_s1_readdata
+	signal mm_interconnect_1_qsys_alu_0_s1_address                       : std_logic_vector(2 downto 0);  -- mm_interconnect_1:qsys_alu_0_s1_address -> qsys_alu_0:avs_s1_address
+	signal mm_interconnect_1_qsys_alu_0_s1_read                          : std_logic;                     -- mm_interconnect_1:qsys_alu_0_s1_read -> qsys_alu_0:avs_s1_read
+	signal mm_interconnect_1_qsys_alu_0_s1_write                         : std_logic;                     -- mm_interconnect_1:qsys_alu_0_s1_write -> qsys_alu_0:avs_s1_write
+	signal mm_interconnect_1_qsys_alu_0_s1_writedata                     : std_logic_vector(31 downto 0); -- mm_interconnect_1:qsys_alu_0_s1_writedata -> qsys_alu_0:avs_s1_writedata
 	signal irq_mapper_receiver0_irq                                      : std_logic;                     -- jtag_uart:av_irq -> irq_mapper:receiver0_irq
 	signal hps_f2h_irq0_irq                                              : std_logic_vector(31 downto 0); -- irq_mapper:sender_irq -> hps:f2h_irq_p0
 	signal hps_f2h_irq1_irq                                              : std_logic_vector(31 downto 0); -- irq_mapper_001:sender_irq -> hps:f2h_irq_p1
@@ -767,7 +767,7 @@ architecture rtl of soc_system is
 	signal reset_reset_n_ports_inv                                       : std_logic;                     -- reset_reset_n:inv -> [PLL_using_AD1939_MCLK:rst, jtag_mm1:clk_reset_reset, rst_controller:reset_in0]
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_read_ports_inv  : std_logic;                     -- mm_interconnect_1_jtag_uart_avalon_jtag_slave_read:inv -> jtag_uart:av_read_n
 	signal mm_interconnect_1_jtag_uart_avalon_jtag_slave_write_ports_inv : std_logic;                     -- mm_interconnect_1_jtag_uart_avalon_jtag_slave_write:inv -> jtag_uart:av_write_n
-	signal rst_controller_reset_out_reset_ports_inv                      : std_logic;                     -- rst_controller_reset_out_reset:inv -> [Qsys_LED_control_0:reset_n, SystemID:reset_n, jtag_uart:rst_n]
+	signal rst_controller_reset_out_reset_ports_inv                      : std_logic;                     -- rst_controller_reset_out_reset:inv -> [SystemID:reset_n, jtag_uart:rst_n, qsys_alu_0:reset_n]
 
 begin
 
@@ -777,20 +777,6 @@ begin
 			rst      => reset_reset_n_ports_inv, --   reset.reset
 			outclk_0 => open,                    -- outclk0.clk
 			locked   => open                     -- (terminated)
-		);
-
-	qsys_led_control_0 : component Qsys_LED_control
-		port map (
-			clk              => clk_clk,                                           --  clock.clk
-			reset_n          => rst_controller_reset_out_reset_ports_inv,          --  reset.reset_n
-			avs_s1_address   => mm_interconnect_1_qsys_led_control_0_s1_address,   --     s1.address
-			avs_s1_write     => mm_interconnect_1_qsys_led_control_0_s1_write,     --       .write
-			avs_s1_writedata => mm_interconnect_1_qsys_led_control_0_s1_writedata, --       .writedata
-			avs_s1_read      => mm_interconnect_1_qsys_led_control_0_s1_read,      --       .read
-			avs_s1_readdata  => mm_interconnect_1_qsys_led_control_0_s1_readdata,  --       .readdata
-			switches         => led_control_switches,                              -- export.switches
-			pushbutton       => led_control_pushbutton,                            --       .pushbutton
-			LEDs             => led_control_leds                                   --       .leds
 		);
 
 	systemid : component soc_system_SystemID
@@ -1053,6 +1039,20 @@ begin
 			freeze     => '0'                                            -- (terminated)
 		);
 
+	qsys_alu_0 : component qsys_alu
+		port map (
+			clk              => clk_clk,                                   --  clock.clk
+			reset_n          => rst_controller_reset_out_reset_ports_inv,  --  reset.reset_n
+			avs_s1_address   => mm_interconnect_1_qsys_alu_0_s1_address,   --     s1.address
+			avs_s1_write     => mm_interconnect_1_qsys_alu_0_s1_write,     --       .write
+			avs_s1_writedata => mm_interconnect_1_qsys_alu_0_s1_writedata, --       .writedata
+			avs_s1_read      => mm_interconnect_1_qsys_alu_0_s1_read,      --       .read
+			avs_s1_readdata  => mm_interconnect_1_qsys_alu_0_s1_readdata,  --       .readdata
+			switches         => aliu_control_switches,                     -- export.switches
+			pushbutton       => aliu_control_pushbutton,                   --       .pushbutton
+			leds             => aliu_control_leds                          --       .leds
+		);
+
 	mm_interconnect_0 : component soc_system_mm_interconnect_0
 		port map (
 			hps_h2f_axi_master_awid                                        => hps_h2f_axi_master_awid,                       --                                       hps_h2f_axi_master.awid
@@ -1160,11 +1160,11 @@ begin
 			jtag_uart_avalon_jtag_slave_writedata                             => mm_interconnect_1_jtag_uart_avalon_jtag_slave_writedata,   --                                                            .writedata
 			jtag_uart_avalon_jtag_slave_waitrequest                           => mm_interconnect_1_jtag_uart_avalon_jtag_slave_waitrequest, --                                                            .waitrequest
 			jtag_uart_avalon_jtag_slave_chipselect                            => mm_interconnect_1_jtag_uart_avalon_jtag_slave_chipselect,  --                                                            .chipselect
-			Qsys_LED_control_0_s1_address                                     => mm_interconnect_1_qsys_led_control_0_s1_address,           --                                       Qsys_LED_control_0_s1.address
-			Qsys_LED_control_0_s1_write                                       => mm_interconnect_1_qsys_led_control_0_s1_write,             --                                                            .write
-			Qsys_LED_control_0_s1_read                                        => mm_interconnect_1_qsys_led_control_0_s1_read,              --                                                            .read
-			Qsys_LED_control_0_s1_readdata                                    => mm_interconnect_1_qsys_led_control_0_s1_readdata,          --                                                            .readdata
-			Qsys_LED_control_0_s1_writedata                                   => mm_interconnect_1_qsys_led_control_0_s1_writedata,         --                                                            .writedata
+			qsys_alu_0_s1_address                                             => mm_interconnect_1_qsys_alu_0_s1_address,                   --                                               qsys_alu_0_s1.address
+			qsys_alu_0_s1_write                                               => mm_interconnect_1_qsys_alu_0_s1_write,                     --                                                            .write
+			qsys_alu_0_s1_read                                                => mm_interconnect_1_qsys_alu_0_s1_read,                      --                                                            .read
+			qsys_alu_0_s1_readdata                                            => mm_interconnect_1_qsys_alu_0_s1_readdata,                  --                                                            .readdata
+			qsys_alu_0_s1_writedata                                           => mm_interconnect_1_qsys_alu_0_s1_writedata,                 --                                                            .writedata
 			SystemID_control_slave_address                                    => mm_interconnect_1_systemid_control_slave_address,          --                                      SystemID_control_slave.address
 			SystemID_control_slave_readdata                                   => mm_interconnect_1_systemid_control_slave_readdata          --                                                            .readdata
 		);

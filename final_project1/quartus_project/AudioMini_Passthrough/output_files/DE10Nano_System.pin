@@ -133,7 +133,7 @@ HPS_DDR3_DQ[26]              : AA28      : bidir  : SSTL-15 Class I   :         
 GND                          : AB1       : gnd    :                   :         :           :                
 GND                          : AB2       : gnd    :                   :         :           :                
 GND                          : AB3       : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : AB4       :        :                   :         : 3A        :                
+HPS_I2C0_SCLK                : AB4       : bidir  : 3.3-V LVTTL       :         : 3A        : N              
 altera_reserved_tck          : AB5       : input  : 3.3-V LVTTL       :         : 3A        : N              
 AS_DATA3, DATA3              : AB6       :        :                   :         : 3A        :                
 Audio_Mini_GPIO_0[21]        : AB23      : bidir  : 3.3-V LVTTL       :         : 5A        : Y              
@@ -193,8 +193,8 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : AE4       :        :                   :      
 VREFB3AN0                    : AE5       : power  :                   :         : 3A        :                
 Audio_Mini_GPIO_0[13]        : AE6       : bidir  : 3.3-V LVTTL       :         : 3A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE7       :        :                   :         : 3B        :                
-HPS_I2C0_SDAT                : AE8       : bidir  : 3.3-V LVTTL       :         : 3B        : N              
-HPS_I2C0_SCLK                : AE9       : bidir  : 3.3-V LVTTL       :         : 3B        : N              
+RESERVED_INPUT_WITH_WEAK_PULLUP : AE8       :        :                   :         : 3B        :                
+RESERVED_INPUT_WITH_WEAK_PULLUP : AE9       :        :                   :         : 3B        :                
 VCCIO3B                      : AE10      : power  :                   : 3.3V    : 3B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE11      :        :                   :         : 3B        :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : AE12      :        :                   :         : 3B        :                
@@ -218,7 +218,7 @@ GND                          : AF1       : gnd    :                   :         
 GND                          : AF2       : gnd    :                   :         :           :                
 GND                          : AF3       : gnd    :                   :         :           :                
 Audio_Mini_GPIO_0[8]         : AF4       : bidir  : 3.3-V LVTTL       :         : 3B        : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : AF5       :        :                   :         : 3B        :                
+HPS_I2C0_SDAT                : AF5       : bidir  : 3.3-V LVTTL       :         : 3B        : N              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF6       :        :                   :         : 3B        :                
 Audio_Mini_GPIO_0[6]         : AF7       : bidir  : 3.3-V LVTTL       :         : 3B        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : AF8       :        :                   :         : 3B        :                

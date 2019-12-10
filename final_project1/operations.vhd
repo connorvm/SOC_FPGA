@@ -38,9 +38,9 @@ architecture operations_arch of operations is
 	signal result_add : std_logic_vector(63 downto 0);
 	signal result_sub : std_logic_vector(63 downto 0);
 	signal result_mul : std_logic_vector(63 downto 0);
-	signal result_dec : std_logic_vector(63 downto 0);
-	signal result_pas : std_logic_vector(63 downto 0);
-	signal result_and : std_logic_vector(63 downto 0);
+	signal result_dec : std_logic_vector(31 downto 0);
+	signal result_pas : std_logic_vector(31 downto 0);
+	signal result_and : std_logic_vector(31 downto 0);
 
 begin	
 
@@ -96,7 +96,6 @@ begin
 						
 				when s7 =>	--AND
 					result_l <= result_and(31 downto 0);
-					result_h <= result_and(63 downto 32);
 					
 			end case;
 	end process;
@@ -113,7 +112,7 @@ begin
 	process(clk)  -- subtract
 	begin
 		if rising_edge(clk) then
-			result_sub <= std_logic_vector(signed(a) - signed(b));
+			result_sub <= x"00000000"  & std_logic_vector(signed(a) - signed(b));
 		end if;
 	end process;	
 	
@@ -137,7 +136,7 @@ begin
 	process(clk) -- passthrough
 	begin
 		if rising_edge(clk) then
-			result_pas <= x"00000000" & a;	--Does this need to be signed() as well??
+			result_pas <= a;	--Does this need to be signed() as well??
 		end if;
 	end process;
 

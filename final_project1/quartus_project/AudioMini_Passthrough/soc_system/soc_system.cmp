@@ -3,6 +3,9 @@
 			ad1939_abclk_clk                    : in    std_logic                     := 'X';             -- clk
 			ad1939_alrclk_clk                   : in    std_logic                     := 'X';             -- clk
 			ad1939_mclk_clk                     : in    std_logic                     := 'X';             -- clk
+			aliu_control_switches               : in    std_logic_vector(3 downto 0)  := (others => 'X'); -- switches
+			aliu_control_pushbutton             : in    std_logic                     := 'X';             -- pushbutton
+			aliu_control_leds                   : out   std_logic_vector(7 downto 0);                     -- leds
 			clk_clk                             : in    std_logic                     := 'X';             -- clk
 			hps_f2h_cold_reset_req_reset_n      : in    std_logic                     := 'X';             -- reset_n
 			hps_f2h_debug_reset_req_reset_n     : in    std_logic                     := 'X';             -- reset_n
@@ -67,9 +70,6 @@
 			hps_spim0_ss_2_n                    : out   std_logic;                                        -- ss_2_n
 			hps_spim0_ss_3_n                    : out   std_logic;                                        -- ss_3_n
 			hps_spim0_sclk_out_clk              : out   std_logic;                                        -- clk
-			led_control_switches                : in    std_logic_vector(3 downto 0)  := (others => 'X'); -- switches
-			led_control_pushbutton              : in    std_logic                     := 'X';             -- pushbutton
-			led_control_leds                    : out   std_logic_vector(7 downto 0);                     -- leds
 			memory_mem_a                        : out   std_logic_vector(14 downto 0);                    -- mem_a
 			memory_mem_ba                       : out   std_logic_vector(2 downto 0);                     -- mem_ba
 			memory_mem_ck                       : out   std_logic;                                        -- mem_ck

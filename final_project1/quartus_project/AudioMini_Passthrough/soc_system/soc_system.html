@@ -67,7 +67,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
   </table>
   <table class="blueBar">
    <tr>
-    <td class="l">2019.11.14.16:39:54</td>
+    <td class="l">2019.12.10.14:29:14</td>
     <td class="r">Datasheet</td>
    </tr>
   </table>
@@ -100,9 +100,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    <div style="display:inline-block ; text-align:left"><span>
      <br/>All Components
      <br/>&#160;&#160;
-     <a href="#module_Qsys_LED_control_0"><b>Qsys_LED_control_0</b>
-     </a> Qsys_LED_control 1.0
-     <br/>&#160;&#160;
      <a href="#module_SystemID"><b>SystemID</b>
      </a> altera_avalon_sysid_qsys 18.0
      <br/>&#160;&#160;
@@ -110,7 +107,10 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
      </a> altera_avalon_jtag_uart 18.0
      <br/>&#160;&#160;
      <a href="#module_onchip_memory"><b>onchip_memory</b>
-     </a> altera_avalon_onchip_memory2 18.0</span>
+     </a> altera_avalon_onchip_memory2 18.0
+     <br/>&#160;&#160;
+     <a href="#module_qsys_alu_0"><b>qsys_alu_0</b>
+     </a> qsys_alu 1.0</span>
    </div>
   </div>
   <div style="width:100% ;  height:10px"> </div>
@@ -144,25 +144,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    </tr>
    <tr>
     <td class="slavemodule">&#160;
-     <a href="#module_Qsys_LED_control_0"><b>Qsys_LED_control_0</b>
-     </a>
-    </td>
-    <td class="empty"></td>
-    <td class="empty"></td>
-    <td class="empty"></td>
-    <td class="empty"></td>
-    <td class="empty"></td>
-   </tr>
-   <tr>
-    <td class="slaveb">s1&#160;</td>
-    <td class="empty"></td>
-    <td class="addr"><span style="color:#989898">0x</span>00000000</td>
-    <td class="addr"><span style="color:#989898">0x</span>ff200000</td>
-    <td class="addr"><span style="color:#989898">0x</span>ff200000</td>
-    <td class="addr"><span style="color:#989898">0x</span>00000000</td>
-   </tr>
-   <tr>
-    <td class="slavemodule">&#160;
      <a href="#module_SystemID"><b>SystemID</b>
      </a>
     </td>
@@ -175,9 +156,9 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    <tr>
     <td class="slaveb">control_slave&#160;</td>
     <td class="empty"></td>
-    <td class="addr"><span style="color:#989898">0x</span>00000010</td>
-    <td class="addr"><span style="color:#989898">0x</span>ff200010</td>
-    <td class="addr"><span style="color:#989898">0x</span>ff200010</td>
+    <td class="addr"><span style="color:#989898">0x</span>00000020</td>
+    <td class="addr"><span style="color:#989898">0x</span>ff200020</td>
+    <td class="addr"><span style="color:#989898">0x</span>ff200020</td>
     <td class="empty"></td>
    </tr>
    <tr>
@@ -986,9 +967,9 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
    <tr>
     <td class="slaveb">avalon_jtag_slave&#160;</td>
     <td class="empty"></td>
-    <td class="addr"><span style="color:#989898">0x</span>00000018</td>
-    <td class="addr"><span style="color:#989898">0x</span>ff200018</td>
-    <td class="addr"><span style="color:#989898">0x</span>ff200018</td>
+    <td class="addr"><span style="color:#989898">0x</span>00000028</td>
+    <td class="addr"><span style="color:#989898">0x</span>ff200028</td>
+    <td class="addr"><span style="color:#989898">0x</span>ff200028</td>
     <td class="empty"></td>
    </tr>
    <tr>
@@ -1009,6 +990,25 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     <td class="addr"><span style="color:#989898">0x</span>c0000000</td>
     <td class="addr"><span style="color:#989898">0x</span>c0000000</td>
     <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slavemodule">&#160;
+     <a href="#module_qsys_alu_0"><b>qsys_alu_0</b>
+     </a>
+    </td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+    <td class="empty"></td>
+   </tr>
+   <tr>
+    <td class="slaveb">s1&#160;</td>
+    <td class="empty"></td>
+    <td class="addr"><span style="color:#989898">0x</span>00000000</td>
+    <td class="addr"><span style="color:#989898">0x</span>ff200000</td>
+    <td class="addr"><span style="color:#989898">0x</span>ff200000</td>
+    <td class="addr"><span style="color:#989898">0x</span>00000000</td>
    </tr>
   </table>
   <a name="module_PLL_using_AD1939_MCLK"> </a>
@@ -2944,81 +2944,6 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </tr>
    </table>
   </div>
-  <a name="module_Qsys_LED_control_0"> </a>
-  <div>
-   <hr/>
-   <h2>Qsys_LED_control_0</h2>Qsys_LED_control v1.0
-   <br/>
-   <div class="greydiv">
-    <table class="connectionboxes">
-     <tr>
-      <td class="neighbor" rowspan="2">
-       <a href="#module_hps_bridges">hps_bridges</a>
-      </td>
-      <td class="from">h2f_lw&#160;&#160;</td>
-      <td class="main" rowspan="10">Qsys_LED_control_0</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;s1</td>
-     </tr>
-     <tr style="height:6px">
-      <td></td>
-     </tr>
-     <tr>
-      <td class="neighbor" rowspan="2">
-       <a href="#module_jtag_mm1">jtag_mm1</a>
-      </td>
-      <td class="from">master&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;s1</td>
-     </tr>
-     <tr style="height:6px">
-      <td></td>
-     </tr>
-     <tr>
-      <td class="neighbor" rowspan="4">
-       <a href="#module_clk_hps">clk_hps</a>
-      </td>
-      <td class="from">clk&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;clock</td>
-     </tr>
-     <tr>
-      <td class="from">clk_reset&#160;&#160;</td>
-     </tr>
-     <tr>
-      <td class="to">&#160;&#160;reset</td>
-     </tr>
-    </table>
-   </div>
-   <br/>
-   <br/>
-   <table class="flowbox">
-    <tr>
-     <td class="parametersbox">
-      <h2>Parameters</h2>
-      <table>
-       <tr>
-        <td class="parametername">deviceFamily</td>
-        <td class="parametervalue">UNKNOWN</td>
-       </tr>
-       <tr>
-        <td class="parametername">generateLegacySim</td>
-        <td class="parametervalue">false</td>
-       </tr>
-      </table>
-     </td>
-    </tr>
-   </table>&#160;&#160;
-   <table class="flowbox">
-    <tr>
-     <td class="parametersbox">
-      <h2>Software Assignments</h2>(none)</td>
-    </tr>
-   </table>
-  </div>
   <a name="module_SystemID"> </a>
   <div>
    <hr/>
@@ -3069,7 +2994,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">timestamp</td>
-        <td class="parametervalue">1573774771</td>
+        <td class="parametervalue">1576013331</td>
        </tr>
        <tr>
         <td class="parametername">deviceFamily</td>
@@ -3094,7 +3019,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
        </tr>
        <tr>
         <td class="parametername">TIMESTAMP</td>
-        <td class="parametervalue">1573774771</td>
+        <td class="parametervalue">1576013331</td>
        </tr>
       </table>
      </td>
@@ -23086,7 +23011,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td class="from">h2f_lw&#160;&#160;</td>
       <td class="neighbor" rowspan="2">
-       <a href="#module_Qsys_LED_control_0">Qsys_LED_control_0</a>
+       <a href="#module_qsys_alu_0">qsys_alu_0</a>
       </td>
      </tr>
      <tr>
@@ -30789,7 +30714,7 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
       <td></td>
       <td class="from">master&#160;&#160;</td>
       <td class="neighbor" rowspan="2">
-       <a href="#module_Qsys_LED_control_0">Qsys_LED_control_0</a>
+       <a href="#module_qsys_alu_0">qsys_alu_0</a>
       </td>
      </tr>
      <tr>
@@ -31277,10 +31202,85 @@ div.greydiv { vertical-align:top ; text-align:center ; background:#eeeeee ; bord
     </tr>
    </table>
   </div>
+  <a name="module_qsys_alu_0"> </a>
+  <div>
+   <hr/>
+   <h2>qsys_alu_0</h2>qsys_alu v1.0
+   <br/>
+   <div class="greydiv">
+    <table class="connectionboxes">
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_hps_bridges">hps_bridges</a>
+      </td>
+      <td class="from">h2f_lw&#160;&#160;</td>
+      <td class="main" rowspan="10">qsys_alu_0</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;s1</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="2">
+       <a href="#module_jtag_mm1">jtag_mm1</a>
+      </td>
+      <td class="from">master&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;s1</td>
+     </tr>
+     <tr style="height:6px">
+      <td></td>
+     </tr>
+     <tr>
+      <td class="neighbor" rowspan="4">
+       <a href="#module_clk_hps">clk_hps</a>
+      </td>
+      <td class="from">clk&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;clock</td>
+     </tr>
+     <tr>
+      <td class="from">clk_reset&#160;&#160;</td>
+     </tr>
+     <tr>
+      <td class="to">&#160;&#160;reset</td>
+     </tr>
+    </table>
+   </div>
+   <br/>
+   <br/>
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Parameters</h2>
+      <table>
+       <tr>
+        <td class="parametername">deviceFamily</td>
+        <td class="parametervalue">UNKNOWN</td>
+       </tr>
+       <tr>
+        <td class="parametername">generateLegacySim</td>
+        <td class="parametervalue">false</td>
+       </tr>
+      </table>
+     </td>
+    </tr>
+   </table>&#160;&#160;
+   <table class="flowbox">
+    <tr>
+     <td class="parametersbox">
+      <h2>Software Assignments</h2>(none)</td>
+    </tr>
+   </table>
+  </div>
   <table class="blueBar">
    <tr>
     <td class="l">generation took 0.02 seconds</td>
-    <td class="r">rendering took 0.80 seconds</td>
+    <td class="r">rendering took 0.37 seconds</td>
    </tr>
   </table>
  </body>

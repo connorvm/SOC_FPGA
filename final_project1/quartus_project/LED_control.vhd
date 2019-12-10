@@ -89,7 +89,7 @@ architecture LED_arch of LED_control is
 				elsif SW = "0011" and PB = '1' then
 						state <= s3;
 				elsif SW = "0100" and PB = '1' then
-						state <= s4;
+						
 					else
 						state <= s0;
 					end if;

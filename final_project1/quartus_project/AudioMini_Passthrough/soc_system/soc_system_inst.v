@@ -66,9 +66,6 @@
 		.hps_spim0_ss_2_n                    (<connected-to-hps_spim0_ss_2_n>),                    //                        .ss_2_n
 		.hps_spim0_ss_3_n                    (<connected-to-hps_spim0_ss_3_n>),                    //                        .ss_3_n
 		.hps_spim0_sclk_out_clk              (<connected-to-hps_spim0_sclk_out_clk>),              //      hps_spim0_sclk_out.clk
-		.led_control_switches                (<connected-to-led_control_switches>),                //             led_control.switches
-		.led_control_pushbutton              (<connected-to-led_control_pushbutton>),              //                        .pushbutton
-		.led_control_leds                    (<connected-to-led_control_leds>),                    //                        .leds
 		.memory_mem_a                        (<connected-to-memory_mem_a>),                        //                  memory.mem_a
 		.memory_mem_ba                       (<connected-to-memory_mem_ba>),                       //                        .mem_ba
 		.memory_mem_ck                       (<connected-to-memory_mem_ck>),                       //                        .mem_ck
@@ -85,6 +82,9 @@
 		.memory_mem_odt                      (<connected-to-memory_mem_odt>),                      //                        .mem_odt
 		.memory_mem_dm                       (<connected-to-memory_mem_dm>),                       //                        .mem_dm
 		.memory_oct_rzqin                    (<connected-to-memory_oct_rzqin>),                    //                        .oct_rzqin
-		.reset_reset_n                       (<connected-to-reset_reset_n>)                        //                   reset.reset_n
+		.reset_reset_n                       (<connected-to-reset_reset_n>),                       //                   reset.reset_n
+		.aliu_control_switches               (<connected-to-aliu_control_switches>),               //            aliu_control.switches
+		.aliu_control_pushbutton             (<connected-to-aliu_control_pushbutton>),             //                        .pushbutton
+		.aliu_control_leds                   (<connected-to-aliu_control_leds>)                    //                        .leds
 	);
 

@@ -44,7 +44,7 @@
       }
       datum baseAddress
       {
-         value = "16";
+         value = "32";
          type = "String";
       }
    }
@@ -138,7 +138,7 @@
       }
       datum baseAddress
       {
-         value = "24";
+         value = "40";
          type = "String";
       }
    }
@@ -169,6 +169,14 @@
       {
          value = "9";
          type = "int";
+      }
+   }
+   element qsys_alu_0.s1
+   {
+      datum baseAddress
+      {
+         value = "0";
+         type = "String";
       }
    }
    element soc_system
@@ -455,6 +463,11 @@
    internal="PLL_using_AD1939_MCLK.refclk"
    type="clock"
    dir="end" />
+ <interface
+   name="aliu_control"
+   internal="qsys_alu_0.export"
+   type="conduit"
+   dir="end" />
  <interface name="clk" internal="clk_hps.clk_in" type="clock" dir="end" />
  <interface name="hps_0_h2f_user0_clock" internal="hps.h2f_user0_clock" />
  <interface
@@ -493,7 +506,6 @@
    type="clock"
    dir="start" />
  <interface name="memory" internal="hps.memory" type="conduit" dir="end" />
- <interface name="qsys_alu_0_s1" internal="qsys_alu_0.s1" type="avalon" dir="end" />
  <interface name="reset" internal="clk_hps.clk_in_reset" type="reset" dir="end" />
  <module
    name="PLL_using_AD1939_MCLK"
@@ -1269,7 +1281,7 @@
    name="jtag_mm1"
    kind="altera_jtag_avalon_master"
    version="18.0"
-   enabled="0">
+   enabled="1">
   <parameter name="AUTO_DEVICE" value="5CSEBA6U23I7" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
   <parameter name="AUTO_DEVICE_SPEEDGRADE" value="7" />
@@ -1346,7 +1358,7 @@
    start="hps.h2f_lw_axi_master"
    end="jtag_uart.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0018" />
+  <parameter name="baseAddress" value="0x0028" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -1355,7 +1367,25 @@
    start="hps.h2f_lw_axi_master"
    end="SystemID.control_slave">
   <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0010" />
+  <parameter name="baseAddress" value="0x0020" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.0"
+   start="hps.h2f_lw_axi_master"
+   end="qsys_alu_0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.0"
+   start="jtag_mm1.master"
+   end="qsys_alu_0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection kind="clock" version="18.0" start="clk_hps.clk" end="SystemID.clk" />

@@ -1,5 +1,5 @@
 
-State Machine - |DE10Nano_System|soc_system:u0|soc_system_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:qsys_led_control_0_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
+State Machine - |DE10Nano_System|soc_system:u0|soc_system_mm_interconnect_1:mm_interconnect_1|altera_merlin_burst_adapter:qsys_alu_0_s1_burst_adapter|altera_merlin_burst_adapter_13_1:altera_merlin_burst_adapter_13_1.burst_adapter|state
 Name state.ST_IDLE state.ST_UNCOMP_WR_SUBBURST state.ST_UNCOMP_TRANS state.ST_COMP_TRANS 
 state.ST_IDLE 0 0 0 0 
 state.ST_COMP_TRANS 1 0 0 1 
@@ -26,6 +26,17 @@ state.ST_IDLE 0 0 0 0
 state.ST_COMP_TRANS 1 0 0 1 
 state.ST_UNCOMP_TRANS 1 0 1 0 
 state.ST_UNCOMP_WR_SUBBURST 1 1 0 0 
+
+State Machine - |DE10Nano_System|soc_system:u0|qsys_alu:qsys_alu_0|alu:Ualu|operations:Uops|state
+Name state.s7 state.s6 state.s5 state.s4 state.s3 state.s2 state.s1 state.s0 
+state.s0 0 0 0 0 0 0 0 0 
+state.s1 0 0 0 0 0 0 1 1 
+state.s2 0 0 0 0 0 1 0 1 
+state.s3 0 0 0 0 1 0 0 1 
+state.s4 0 0 0 1 0 0 0 1 
+state.s5 0 0 1 0 0 0 0 1 
+state.s6 0 1 0 0 0 0 0 1 
+state.s7 1 0 0 0 0 0 0 1 
 
 State Machine - |DE10Nano_System|soc_system:u0|soc_system_jtag_mm1:jtag_mm1|altera_avalon_packets_to_master:transacto|packets_to_master:p2m|state
 Name state.READ_SEND_WAIT state.READ_SEND_ISSUE state.READ_DATA_WAIT state.READ_CMD_WAIT state.READ_ASSERT state.RETURN_PACKET state.WRITE_WAIT state.GET_WRITE_DATA state.GET_ADDR4 state.GET_ADDR3 state.GET_ADDR2 state.GET_ADDR1 state.GET_SIZE2 state.GET_SIZE1 state.GET_EXTRA state.0000 
@@ -58,11 +69,3 @@ write_state.ST_BYPASS 0 0 0 0
 write_state.ST_HEADER_1 0 0 1 1 
 write_state.ST_HEADER_2 0 1 0 1 
 write_state.ST_WRITE_DATA 1 0 0 1 
-
-State Machine - |DE10Nano_System|soc_system:u0|Qsys_led_control:qsys_led_control_0|LED_control:U10|state
-Name state.s4 state.s3 state.s2 state.s1 state.s0 
-state.s0 0 0 0 0 0 
-state.s1 0 0 0 1 1 
-state.s2 0 0 1 0 1 
-state.s3 0 1 0 0 1 
-state.s4 1 0 0 0 1 
