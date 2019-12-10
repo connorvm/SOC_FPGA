@@ -101,7 +101,11 @@ int main()
     uint32_t *rh = alu_control_base + RH_ALU_CONTROL_OFFSET;
     uint32_t *rl = alu_control_base + RL_ALU_CONTROL_OFFSET;
     uint32_t *status = alu_control_base + STATUS_ALU_CONTROL_OFFSET;
-    
+	 
+	*a = 0xCCCCCCCC;
+	*b = 0x11111111;
+
+	*opcode = 1;
     // display each register address and value
     printf("**************************\n");
     printf("   Addresses                Values\n");
@@ -112,15 +116,14 @@ int main()
     printf("C: 0x%p", c);
     printf("                            %08x\n",*c);
     printf("OPCODE: 0x%p", opcode);
-    printf("                            %08x\n",*opcode);
+    printf("                       %08x\n",*opcode);
     printf("RH: 0x%p", rh);
-    printf("                            %08x\n",*rh);
+    printf("                           %08x\n",*rh);
     printf("RL: 0x%p", rl);
-    printf("                            %08x\n",*rl);
+    printf("                           %08x\n",*rl);
     printf("STATUS: 0x%p", status);
-    printf("                            %08x\n",*status);
+    printf("                       %08x\n",*status);
     
-
     // printf("**************************\n");
     // printf("register addresses\n");
     // printf("**************************\n");
