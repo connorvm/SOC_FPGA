@@ -13,7 +13,13 @@
 #include <fcntl.h>      // file control
 #include <signal.h>     // catch ctrl-c interrupt signal from parent process
 #include <stdbool.h>    // boolean types
-
+#define A_ALU_CONTROL_OFFSET 0x0
+#define B_ALU_CONTROL_OFFSET 0x1
+#define C_ALU_CONTROL_OFFSET 0x6
+#define OPCODE_ALU_CONTROL_OFFSET 0x2
+#define RL_ALU_CONTROL_OFFSET 0x3
+#define RH_ALU_CONTROL_OFFSET 0x4
+#define STATUS_ALU_CONTROL_OFFSET 0x5
 #define QSYS_LED_CONTROL_0_SPAN 16
 #define QSYS_LED_CONTROL_0_BASE 0x00000000
 
@@ -33,12 +39,15 @@
    pointer by 1, the memory address increments by 4 bytes since that's the size
    of the type the pointer points to.
 */
-#define HS_LED_CONTROL_OFFSET 0x0
+
 // Define the other register offsets here 
 
 // flag to indicate whetehr or not we've recieved an interrupt signal from the OS
 static volatile bool interrupted = false;
 int signal_a;
+int signal_b;
+int signal_c;
+int signal_opcode;
 
 // graciously handle interrupt signals from the OS
 void interrupt_handler(int sig)
@@ -69,11 +78,11 @@ int main()
     // NOTE: QSYS_LED_CONTROL_0_BASE and QSYS_LED_CONTROL_0_SPAN come from 
     // hps_0_arm_a9_0.h; the names might be different based upon how you 
     // named your component in Platform Designer.
-    uint32_t *led_control_base = (uint32_t *) mmap(NULL, QSYS_LED_CONTROL_0_SPAN,
+    uint32_t *alu_control_base = (uint32_t *) mmap(NULL, QSYS_LED_CONTROL_0_SPAN,
         PROT_READ | PROT_WRITE,MAP_SHARED, devmem_fd, QSYS_LED_CONTROL_0_BASE);
 
     // check for errors
-    if (led_control_base == MAP_FAILED)
+    if (alu_control_base == MAP_FAILED)
     {
         // capture the error number
         int err = errno;
@@ -87,30 +96,46 @@ int main()
     }
 
     // create pointers for each register
-    uint32_t *hs_led_control = led_control_base + HS_LED_CONTROL_OFFSET;
     // Define the other register pointers here
-    uint32_t *led_reg = QSYS_LED_CONTROL_0_BASE;
-
+    uint32_t *a = alu_control_base + A_ALU_CONTROL_OFFSET;
+    uint32_t *b = alu_control_base + B_ALU_CONTROL_OFFSET;
+    uint32_t *c = alu_control_base + C_ALU_CONTROL_OFFSET;
+    uint32_t *opcode = alu_control_base + OPCODE_ALU_CONTROL_OFFSET;
+    uint32_t *rh = alu_control_base + RH_ALU_CONTROL_OFFSET;
+    uint32_t *rl = alu_control_base + RL_ALU_CONTROL_OFFSET;
+    uint32_t *status = alu_control_base + STATUS_ALU_CONTROL_OFFSET;
     
     // display each register address and value
     printf("**************************\n");
     printf("register addresses\n");
     printf("**************************\n");
-    printf("hs_led_control address: 0x%p\n", hs_led_control);
+    printf("hs_led_control address: 0x%p\n", *a);
      // Print the other register addresses here
    
     printf("**************************\n");
     printf("register values\n");
     printf("**************************\n");
-    printf("hs_led_control: 0x%08x\n", *hs_led_control);
+    printf("hs_led_control: 0x%08x\n", *b);
+
+
+    printf("**************************\n");
+    printf("register values\n");
+    printf("**************************\n");
+    printf("hs_led_control: 0x%08x\n", *c);
+
+
+    printf("**************************\n");
+    printf("register values\n");
+    printf("**************************\n");
+    printf("hs_led_control: 0x%08x\n", *opcode);
     // Print the other register values here
 
     
     // set the component into software control mode
-    *hs_led_control = 1;
+    //*hs_led_control = 1;
 
     // clear all of the LEDs
-    *led_reg = 0;
+    //*led_reg = 0;
 
     /* run a pattern on the LEDS until we are interrupted with a SIGINT signal.
         The pattern "fills" the LEDS from right to left, i.e.
@@ -170,10 +195,10 @@ int main()
     }
 
     // set the component back into hardware control mode
-    *hs_led_control = 0;
+    //*hs_led_control = 0;
 
     // unmap our custom component
-    int result = munmap(led_control_base, QSYS_LED_CONTROL_0_SPAN);
+    int result = munmap(alu_control_base, QSYS_LED_CONTROL_0_SPAN);
 
     // check for errors
     if (result < 0)
