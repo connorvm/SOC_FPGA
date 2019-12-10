@@ -1,5 +1,8 @@
-// Authors: Connor Van Meter and Alex Salois
-//This is the C-program that will demonstrate the opcode operations.
+//Authors: Connor Van Meter and Alex Salois
+//This C-Program will demonstarte the opcode operations.
+//Needs to access the registers using mmap() in Linux.
+//Needs to run automatically on boot-up using systemd.
+
 
 #include <stdio.h>
 #include <sys/mman.h>   // mmap functions
@@ -11,7 +14,10 @@
 #include <signal.h>     // catch ctrl-c interrupt signal from parent process
 #include <stdbool.h>    // boolean types
 
-#include <hps_0_arm_a9_0.h> // Platform Designer components addresses
+#define QSYS_LED_CONTROL_0_SPAN 16
+#define QSYS_LED_CONTROL_0_BASE 0x00000000
+
+// #include <hps_0_arm_a9_0.h> // Platform Designer components addresses
 
 /**********************
 * Register offsets
@@ -32,6 +38,7 @@
 
 // flag to indicate whetehr or not we've recieved an interrupt signal from the OS
 static volatile bool interrupted = false;
+int signal_a;
 
 // graciously handle interrupt signals from the OS
 void interrupt_handler(int sig)
@@ -82,6 +89,7 @@ int main()
     // create pointers for each register
     uint32_t *hs_led_control = led_control_base + HS_LED_CONTROL_OFFSET;
     // Define the other register pointers here
+    uint32_t *led_reg = QSYS_LED_CONTROL_0_BASE;
 
     
     // display each register address and value
@@ -105,7 +113,7 @@ int main()
     *led_reg = 0;
 
     /* run a pattern on the LEDS until we are interrupted with a SIGINT signal.
-       The pattern "fills" the LEDS from right to left, i.e.
+        The pattern "fills" the LEDS from right to left, i.e.
         00011000
         00111100
         01111110
@@ -114,17 +122,51 @@ int main()
         00111100
         00011000
         ... repeat
-       where 0 indicates off and 1 indicates on. This pattern repeats.
-       Sleep for 0.1 seconds between each pattern-step with usleep(0.1*1e6)
+        where 0 indicates off and 1 indicates on. This pattern repeats.
+        Sleep for 0.1 seconds between each pattern-step with usleep(0.1*1e6)
 
-       Extra credit will be given to the most concise (in number of lines)
-       pattern logic implementation.
+        Extra credit will be given to the most concise (in number of lines)
+        pattern logic implementation.
        */
     signal(SIGINT, interrupt_handler); // catch the interrupt signal
     while(!interrupted)
     {
-        // pattern logic goes here...
-        usleep(0.1*1e6);
+        for(int i=0; i<7; i++){
+            switch (i)
+            {
+            case 0:
+                signal_a = 0x18;
+                break;
+
+            case 1:
+                signal_a = 0x3C;
+                break;
+
+            case 2:
+                signal_a = 0x7E;
+                break;
+
+            case 3:
+                signal_a = 0xFF;
+                break;
+
+            case 4:
+                signal_a = 0x7E;
+                break;
+
+            case 5:
+                signal_a = 0x3C;
+                break;
+
+            case 6:
+                signal_a = 0x18;
+                break;
+
+            default:
+                break;
+            }
+            usleep(0.1*1e6);
+        }
     }
 
     // set the component back into hardware control mode
