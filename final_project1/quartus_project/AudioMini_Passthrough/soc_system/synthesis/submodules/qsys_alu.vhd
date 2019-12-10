@@ -1,4 +1,4 @@
-
+x
 -- Authors: Connor Van Meter, Alex Salois
 
 
@@ -46,12 +46,12 @@ component alu is
 end component alu;
 
     signal show_reg     : std_logic_vector(31 downto 0);
-    signal a_reg        : std_logic_vector(31 downto 0);
-    signal b_reg        : std_logic_vector(31 downto 0);
-	 signal c_reg			: std_logic_vector(31 downto 0);
+    signal a_reg        : std_logic_vector(31 downto 0) := x"FFFFFFF";
+    signal b_reg        : std_logic_vector(31 downto 0) := x"0000000";
+	 signal c_reg			: std_logic_vector(31 downto 0) := x"0000000";
     signal h_reg        : std_logic_vector(31 downto 0);
     signal l_reg        : std_logic_vector(31 downto 0);
-	 signal opcode			: std_logic_vector(2 downto 0);
+	 signal opcode			: std_logic_vector(2 downto 0)  := "101";
 	 signal status			: std_logic_vector(2 downto 0);
 
     signal show_byte    : std_logic_vector(7 downto 0);
@@ -85,7 +85,7 @@ end component alu;
                 when "01" => show_reg <= b_reg; --when 1, display Register b
                 when "10" => show_reg <= l_reg; --when 2, display Low Register
                 when "11" => show_reg <= h_reg; --when 3, display High Register
-                when others => show_reg <= x"00000000";
+                when others => show_reg <= x"0000000";
             end case;
 
             case switches(1 downto 0) is
