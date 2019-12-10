@@ -104,28 +104,46 @@ int main()
     
     // display each register address and value
     printf("**************************\n");
-    printf("register addresses\n");
-    printf("**************************\n");
-    printf("hs_led_control address: 0x%p\n", a);
+    printf("   Addresses                Values\n");
+    printf("A: 0x%p", a);
+    printf("                            %08x\n",*a);
+    printf("B: 0x%p", b);
+    printf("                            %08x\n",*b);
+    printf("C: 0x%p", c);
+    printf("                            %08x\n",*c);
+    printf("OPCODE: 0x%p", opcode);
+    printf("                            %08x\n",*opcode);
+    printf("RH: 0x%p", rh);
+    printf("                            %08x\n",*rh);
+    printf("RL: 0x%p", rl);
+    printf("                            %08x\n",*rl);
+    printf("STATUS: 0x%p", status);
+    printf("                            %08x\n",*status);
     
-     // Print the other register addresses here
+
+    // printf("**************************\n");
+    // printf("register addresses\n");
+    // printf("**************************\n");
+    // printf("hs_led_control address: 0x%p\n", a);
+    
+    //  // Print the other register addresses here
    
-    printf("**************************\n");
-    printf("register values\n");
-    printf("**************************\n");
-    printf("hs_led_control: 0x%08x\n", *b);
+    // printf("**************************\n");
+    // printf("register values\n");
+    // printf("**************************\n");
+    // printf("hs_led_control: 0x%08x\n", *b);
 
 
-    printf("**************************\n");
-    printf("register values\n");
-    printf("**************************\n");
-    printf("hs_led_control: 0x%08x\n", *c);
+    // printf("**************************\n");
+    // printf("register values\n");
+    // printf("**************************\n");
+    // printf("hs_led_control: 0x%08x\n", *c);
 
 
-    printf("**************************\n");
-    printf("register values\n");
-    printf("**************************\n");
-    printf("hs_led_control: 0x%08x\n", *opcode);
+    // printf("**************************\n");
+    // printf("register values\n");
+    // printf("**************************\n");
+    // printf("hs_led_control: 0x%08x\n", *opcode);
     // Print the other register values here
 
     
