@@ -3,6 +3,9 @@
 			ad1939_abclk_clk                    : in    std_logic                     := 'X';             -- clk
 			ad1939_alrclk_clk                   : in    std_logic                     := 'X';             -- clk
 			ad1939_mclk_clk                     : in    std_logic                     := 'X';             -- clk
+			aliu_control_switches               : in    std_logic_vector(3 downto 0)  := (others => 'X'); -- switches
+			aliu_control_pushbutton             : in    std_logic                     := 'X';             -- pushbutton
+			aliu_control_leds                   : out   std_logic_vector(7 downto 0);                     -- leds
 			clk_clk                             : in    std_logic                     := 'X';             -- clk
 			hps_f2h_cold_reset_req_reset_n      : in    std_logic                     := 'X';             -- reset_n
 			hps_f2h_debug_reset_req_reset_n     : in    std_logic                     := 'X';             -- reset_n
@@ -83,10 +86,7 @@
 			memory_mem_odt                      : out   std_logic;                                        -- mem_odt
 			memory_mem_dm                       : out   std_logic_vector(3 downto 0);                     -- mem_dm
 			memory_oct_rzqin                    : in    std_logic                     := 'X';             -- oct_rzqin
-			reset_reset_n                       : in    std_logic                     := 'X';             -- reset_n
-			aliu_control_switches               : in    std_logic_vector(3 downto 0)  := (others => 'X'); -- switches
-			aliu_control_pushbutton             : in    std_logic                     := 'X';             -- pushbutton
-			aliu_control_leds                   : out   std_logic_vector(7 downto 0)                      -- leds
+			reset_reset_n                       : in    std_logic                     := 'X'              -- reset_n
 		);
 	end component soc_system;
 
@@ -95,6 +95,9 @@
 			ad1939_abclk_clk                    => CONNECTED_TO_ad1939_abclk_clk,                    --            ad1939_abclk.clk
 			ad1939_alrclk_clk                   => CONNECTED_TO_ad1939_alrclk_clk,                   --           ad1939_alrclk.clk
 			ad1939_mclk_clk                     => CONNECTED_TO_ad1939_mclk_clk,                     --             ad1939_mclk.clk
+			aliu_control_switches               => CONNECTED_TO_aliu_control_switches,               --            aliu_control.switches
+			aliu_control_pushbutton             => CONNECTED_TO_aliu_control_pushbutton,             --                        .pushbutton
+			aliu_control_leds                   => CONNECTED_TO_aliu_control_leds,                   --                        .leds
 			clk_clk                             => CONNECTED_TO_clk_clk,                             --                     clk.clk
 			hps_f2h_cold_reset_req_reset_n      => CONNECTED_TO_hps_f2h_cold_reset_req_reset_n,      --  hps_f2h_cold_reset_req.reset_n
 			hps_f2h_debug_reset_req_reset_n     => CONNECTED_TO_hps_f2h_debug_reset_req_reset_n,     -- hps_f2h_debug_reset_req.reset_n
@@ -175,9 +178,6 @@
 			memory_mem_odt                      => CONNECTED_TO_memory_mem_odt,                      --                        .mem_odt
 			memory_mem_dm                       => CONNECTED_TO_memory_mem_dm,                       --                        .mem_dm
 			memory_oct_rzqin                    => CONNECTED_TO_memory_oct_rzqin,                    --                        .oct_rzqin
-			reset_reset_n                       => CONNECTED_TO_reset_reset_n,                       --                   reset.reset_n
-			aliu_control_switches               => CONNECTED_TO_aliu_control_switches,               --            aliu_control.switches
-			aliu_control_pushbutton             => CONNECTED_TO_aliu_control_pushbutton,             --                        .pushbutton
-			aliu_control_leds                   => CONNECTED_TO_aliu_control_leds                    --                        .leds
+			reset_reset_n                       => CONNECTED_TO_reset_reset_n                        --                   reset.reset_n
 		);
 

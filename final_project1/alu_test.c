@@ -382,8 +382,8 @@ int main()
     initial_st = *status;
 
     //CASE 17: R = A AND B,   A =  , B = 
-    *a = ;
-    *b = ;
+    *a = 0x11111111;
+    *b = 0x22222222;
     *opcode = 7; //custom -> AND --- SET THE N FLAG
     printf("Case 17    R0      R1      R2          R4          R3          R4+3        R5\n");
     printf("IRV:       %d      %d      %08x        %08x        %08x        %d          %08x\n", initial_a, initial_b, initial_op, initial_RH, initial_RL, initial_st);

@@ -2,6 +2,9 @@
 		.ad1939_abclk_clk                    (<connected-to-ad1939_abclk_clk>),                    //            ad1939_abclk.clk
 		.ad1939_alrclk_clk                   (<connected-to-ad1939_alrclk_clk>),                   //           ad1939_alrclk.clk
 		.ad1939_mclk_clk                     (<connected-to-ad1939_mclk_clk>),                     //             ad1939_mclk.clk
+		.aliu_control_switches               (<connected-to-aliu_control_switches>),               //            aliu_control.switches
+		.aliu_control_pushbutton             (<connected-to-aliu_control_pushbutton>),             //                        .pushbutton
+		.aliu_control_leds                   (<connected-to-aliu_control_leds>),                   //                        .leds
 		.clk_clk                             (<connected-to-clk_clk>),                             //                     clk.clk
 		.hps_f2h_cold_reset_req_reset_n      (<connected-to-hps_f2h_cold_reset_req_reset_n>),      //  hps_f2h_cold_reset_req.reset_n
 		.hps_f2h_debug_reset_req_reset_n     (<connected-to-hps_f2h_debug_reset_req_reset_n>),     // hps_f2h_debug_reset_req.reset_n
@@ -82,9 +85,6 @@
 		.memory_mem_odt                      (<connected-to-memory_mem_odt>),                      //                        .mem_odt
 		.memory_mem_dm                       (<connected-to-memory_mem_dm>),                       //                        .mem_dm
 		.memory_oct_rzqin                    (<connected-to-memory_oct_rzqin>),                    //                        .oct_rzqin
-		.reset_reset_n                       (<connected-to-reset_reset_n>),                       //                   reset.reset_n
-		.aliu_control_switches               (<connected-to-aliu_control_switches>),               //            aliu_control.switches
-		.aliu_control_pushbutton             (<connected-to-aliu_control_pushbutton>),             //                        .pushbutton
-		.aliu_control_leds                   (<connected-to-aliu_control_leds>)                    //                        .leds
+		.reset_reset_n                       (<connected-to-reset_reset_n>)                        //                   reset.reset_n
 	);
 

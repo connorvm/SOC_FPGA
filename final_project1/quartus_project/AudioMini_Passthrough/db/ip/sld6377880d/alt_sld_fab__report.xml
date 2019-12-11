@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
- date="2019.12.10.17:05:30"
+ date="2019.12.11.06:58:31"
  outputDirectory="/home/alex/Documents/SOC_FPGA/final_project1/quartus_project/AudioMini_Passthrough/db/ip/sld6377880d/">
  <perimeter>
   <parameter

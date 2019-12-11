@@ -3,6 +3,9 @@ module soc_system (
 	ad1939_abclk_clk,
 	ad1939_alrclk_clk,
 	ad1939_mclk_clk,
+	aliu_control_switches,
+	aliu_control_pushbutton,
+	aliu_control_leds,
 	clk_clk,
 	hps_f2h_cold_reset_req_reset_n,
 	hps_f2h_debug_reset_req_reset_n,
@@ -83,14 +86,14 @@ module soc_system (
 	memory_mem_odt,
 	memory_mem_dm,
 	memory_oct_rzqin,
-	reset_reset_n,
-	aliu_control_switches,
-	aliu_control_pushbutton,
-	aliu_control_leds);	
+	reset_reset_n);	
 
 	input		ad1939_abclk_clk;
 	input		ad1939_alrclk_clk;
 	input		ad1939_mclk_clk;
+	input	[3:0]	aliu_control_switches;
+	input		aliu_control_pushbutton;
+	output	[7:0]	aliu_control_leds;
 	input		clk_clk;
 	input		hps_f2h_cold_reset_req_reset_n;
 	input		hps_f2h_debug_reset_req_reset_n;
@@ -172,7 +175,4 @@ module soc_system (
 	output	[3:0]	memory_mem_dm;
 	input		memory_oct_rzqin;
 	input		reset_reset_n;
-	input	[3:0]	aliu_control_switches;
-	input		aliu_control_pushbutton;
-	output	[7:0]	aliu_control_leds;
 endmodule
