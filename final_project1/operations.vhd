@@ -128,7 +128,7 @@ begin
 	process(clk) -- decrement
 	begin
 		if rising_edge(clk) then
-			result_dec <= std_logic_vector(signed(signed(b) - signed(1))); 
+			result_dec <= std_logic_vector(signed(b) - 1); 
 		end if;
 	end process;	
 	
@@ -136,7 +136,7 @@ begin
 	process(clk) -- passthrough
 	begin
 		if rising_edge(clk) then
-			result_pas <= signed(a);	--Does this need to be signed() as well??
+			result_pas <= std_logic_vector(signed(a));
 		end if;
 	end process;
 
