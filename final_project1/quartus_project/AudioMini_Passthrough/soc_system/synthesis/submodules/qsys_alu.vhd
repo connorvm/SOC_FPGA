@@ -46,12 +46,12 @@ component alu is
 end component alu;
 
     signal show_reg     : std_logic_vector(31 downto 0);
-    signal a_reg        : std_logic_vector(31 downto 0) := x"FFFFFFFF";
-    signal b_reg        : std_logic_vector(31 downto 0) := x"00000000";
+    signal a_reg        : std_logic_vector(31 downto 0) := x"11111111";
+    signal b_reg        : std_logic_vector(31 downto 0) := x"11111111";
 	 signal c_reg			: std_logic_vector(31 downto 0) := x"00000000";
     signal h_reg        : std_logic_vector(31 downto 0);
     signal l_reg        : std_logic_vector(31 downto 0);
-	 signal opcode			: std_logic_vector(2 downto 0)  := "101";
+	 signal opcode			: std_logic_vector(2 downto 0)  := "001";
 	 signal status			: std_logic_vector(2 downto 0);
 
     signal show_byte    : std_logic_vector(7 downto 0);

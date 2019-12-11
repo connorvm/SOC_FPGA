@@ -73,6 +73,8 @@ begin
 	begin
 			case state is
 				when s0=>
+					result_l <= x"DEADC0DE";
+					result_h <= x"BADBADEE";
 
 				when s1=>	--add
 					result_l <= result_add(31 downto 0);

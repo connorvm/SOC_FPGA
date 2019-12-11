@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="soc_system" kind="soc_system" version="1.0" fabric="QSYS">
  <!-- Format version 18.0 614 (Future versions may contain additional information.) -->
- <!-- 2019.12.11.06:53:20 -->
+ <!-- 2019.12.11.10:30:15 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1576072377</value>
+  <value>1576085391</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -4189,7 +4189,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.TIMESTAMP</name>
-   <value>1576072377</value>
+   <value>1576085391</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.compatible</name>
@@ -4209,7 +4209,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.dts.params.timestamp</name>
-   <value>1576072377</value>
+   <value>1576085391</value>
   </assignment>
   <assignment>
    <name>embeddedsw.dts.vendor</name>
@@ -4225,7 +4225,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="timestamp">
    <type>int</type>
-   <value>1576072377</value>
+   <value>1576085391</value>
    <derived>true</derived>
    <enabled>false</enabled>
    <visible>false</visible>

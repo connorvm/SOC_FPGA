@@ -59,6 +59,9 @@ architecture alu_arch of alu is
 	signal swap_b			:  std_logic_vector(31 downto 0);
 	
 	begin
+		
+		result_h		<= result_high;
+		result_l		<= result_low;
 	
 		Uops: operations
 		port map(
