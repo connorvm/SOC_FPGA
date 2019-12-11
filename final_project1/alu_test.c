@@ -414,7 +414,8 @@ int main()
     //CASE 19: R = A AND B,   A = 0xC0DE  , B = 467
     *a = 0xC0DE;
     *b = 467;
-    *opcode = 7; //custom -> AND
+    *c = 1;
+    *opcode = 7; //custom -> AND --- enable c
     printf("Case 19    R0      R1      R2          R4          R3          R4+3        R5\n");
     printf("IRV:       %d      %d      %08x        %08x        %08x        %d          %08x\n", initial_a, initial_b, initial_op, initial_RH, initial_RL, initial_st);
     printf("ABW:       %d      %d      %08x        %08x        %08x        %d          %08x\n", *a, *b, initial_op, initial_RH, initial_RL, initial_st);
