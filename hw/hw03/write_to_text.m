@@ -20,20 +20,13 @@ end
 %----------------------------------------------------
 % Create the Altera .mif file for the lookup table
 %----------------------------------------------------
-fid = fopen('output.txt','w');
+fid = fopen('input_vectors.txt','w');
 %------------------------------------
 % Write File Header
 %------------------------------------
 line = ['DEPTH = ' num2str(2^Nbits_address) ';'];  % The size of memory in words
 fprintf(fid,'%s\n',line);
-line = ['ADDRESS_RADIX = BIN;'];  % The radix for address values
-fprintf(fid,'%s\n',line);
-line = ['DATA_RADIX = BIN;'];  % The radix for data values
-fprintf(fid,'%s\n',line);
-line = ['CONTENT'];  
-fprintf(fid,'%s\n',line);
-line = ['BEGIN'];  
-fprintf(fid,'%s\n',line);  % start of (address : data pairs)
+
 %------------------------------------
 % Write Memory Data
 %------------------------------------
