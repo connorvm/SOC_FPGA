@@ -22,21 +22,10 @@ signal output_sig : std_logic_vector(7 downto 0) := "00000000";
 
   begin
 
-  --input_sig  <= "00000000";
-  --output_sig <= "00000000"; 
-
 dut : add_1
    port map(
       input_vector  => input_sig,
       output_vector => output_sig);
-
-process 
- begin
-
-wait for 10ns; input_sig <= "00110011";
-wait for 10ns; input_sig <= "11001100";
-
-end process;
 
 
 end architecture;

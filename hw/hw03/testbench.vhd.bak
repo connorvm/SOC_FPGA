@@ -30,4 +30,13 @@ dut : add_1
       input_vector  => input_sig,
       output_vector => output_sig);
 
+process 
+ begin
+
+wait for 10ns; input_sig <= "00110011";
+wait for 10ns; input_sig <= "11001100";
+
+end process;
+
+
 end architecture;
