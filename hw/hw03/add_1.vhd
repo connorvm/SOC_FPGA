@@ -4,8 +4,6 @@
 library IEEE;
 use IEEE.numeric_std.all;
 use IEEE.std_logic_1164.all;
-use STD.textio.all;
-use IEEE.std_logic_textio.all;
 
 entity add_1 is
   port (input_vector  : in  std_logic_vector (7 downto 0);
