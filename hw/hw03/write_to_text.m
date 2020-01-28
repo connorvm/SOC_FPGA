@@ -21,11 +21,6 @@ end
 % Create the Altera .mif file for the lookup table
 %----------------------------------------------------
 fid = fopen('input_vectors.txt','w');
-%------------------------------------
-% Write File Header
-%------------------------------------
-line = ['DEPTH = ' num2str(2^Nbits_address) ';'];  % The size of memory in words
-fprintf(fid,'%s\n',line);
 
 %------------------------------------
 % Write Memory Data
@@ -34,11 +29,7 @@ for data_index = 1:Nwords
     line = [x_beta_table{data_index}.input_bits];
     fprintf(fid,'%s\n',line);
 end
-%------------------------------------
-% Write File End
-%------------------------------------
-line = ['END;'];  
-fprintf(fid,'%s\n',line);  % start of (address : data pairs)
+
 %------------------------------------
 % Close File
 %------------------------------------
